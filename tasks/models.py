@@ -8,7 +8,7 @@ class Project(models.Model):
     title = models.CharField(max_length=30)
     description = models.TextField()
     tasksCount = models.IntegerField(default=0)
-    deadline = models.DateTimeField(default=None)
+    deadline = models.DateField(default=None)
 
 
 class Task(models.Model):
@@ -16,7 +16,7 @@ class Task(models.Model):
     project = models.ForeignKey(Project, on_delete = models.CASCADE, default=None)
     description = models.TextField()
     status = models.IntegerField(blank=True, default=0)
-    deadline = models.DateTimeField(blank=True)
+    deadline = models.DateField(blank=True)
     # указывает на задачу предка
     subtask = models.IntegerField(blank=True, default=0)
     employee = models.ManyToManyField(Employee)
