@@ -1,0 +1,20 @@
+{% extends "tasks.html" %}
+
+{% block content %}
+<h1>all projects</h1>
+<div class="row">
+{% for project in projects %}
+    <div class="col-md-4">
+<!--        нужна картинка-->
+        <h5>{{project.title}}</h5>
+        <div class="col-mb-2">
+            <p>{{project.title}}</p>
+            <p>{{project.deadline}}</p>
+            <a href="{% url 'tasks:project_info' project.pk %}" class="btn btn-primary">Подробнее</a>
+        </div>
+    </div>
+{% endfor %}
+</div>
+{% endblock %}
+
+

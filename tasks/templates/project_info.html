@@ -1,0 +1,12 @@
+{% extends "tasks.html" %}
+
+{% block content %}
+
+<h4>{{project.title}}</h4>
+<p>{{project.description}}</p>
+<p>{{project.tasksCount}}</p>
+<p>{{project.deadline}}</p>
+
+<a href="#" class="btn btn-primary">Задачи</a>
+
+{% endblock %}
