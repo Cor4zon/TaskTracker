@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+{% for employee in employees %}
+    {{employee.id}}
+    {{employee.name}}
+    <a href="{% url 'users:personal_data' employee.pk %}" class="btn btn-primary">Подробнее</a>
+
+{% endfor %}
+
+{% endblock %}

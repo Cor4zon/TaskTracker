@@ -24,4 +24,6 @@ def project_tasks(request, pk):
 
 def task_info(request, pk):
     task = Task.objects.get(pk=pk)
-    return render(request, "task_info.html", context={"task": task})
+
+    comments = Comment.objects.get(task=pk)
+    return render(request, "task_info.html", context={"task": task, "comments": comments})
