@@ -1,0 +1,11 @@
+{% extends "tasks.html" %}
+
+{% block content %}
+
+<h3>Information about task#{{task.id}}</h3>
+
+{{task.title}}
+{{task.description}}
+{{task.deadline}}
+
+{% endblock %}
