@@ -10,3 +10,4 @@ class PersonalData(models.Model):
     phone = models.CharField(max_length=15)
     position = models.CharField(max_length=30)
     employee = models.OneToOneField(Employee, on_delete=models.CASCADE, primary_key=True)
+    photo = models.FilePathField(path="", blank=True)
