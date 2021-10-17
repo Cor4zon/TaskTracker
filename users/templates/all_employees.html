@@ -1,12 +1,23 @@
 {% extends "base.html" %}
+{% load static %}
 
 {% block content %}
 
-{% for employee in employees %}
-    {{employee.id}}
-    {{employee.name}}
-    <a href="{% url 'users:personal_data' employee.pk %}" class="btn btn-primary">Подробнее</a>
+<div class="row">
+  <!-- Content here -->
 
+{% for employee in employees %}
+    <div class="col-md-4">
+        <div class="card mb-2">
+            <div class="card-body">
+            <p>{{employee.name}}</p>
+            <p><a href="{% url 'users:personal_data' employee.pk %}" class="btn btn-primary">Подробнее</a></p>
+            </div>
+        </div>
+    </div>
+</div>
 {% endfor %}
 
 {% endblock %}
+
+
