@@ -85,8 +85,12 @@ WSGI_APPLICATION = 'TaskTracker.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mydb',
+        'USER': 'myuser',
+        'PASSWORD': 'mypass',
+        'HOST': 'localhost',
+        'PORT': '5433',
     }
 }
 
@@ -136,5 +140,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 # for auth
-LOGIN_REDIRECT_URL = 'home'
+LOGIN_REDIRECT_URL = '/tasks'
 LOGOUT_REDIRECT_URL = 'home'

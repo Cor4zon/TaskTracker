@@ -3,8 +3,9 @@
 {% block content %}
 
 <h3>Information about task#{{task.id}}</h3>
+<a href="{% url 'tasks:delete_task' task.pk %}" class="btn btn btn-danger">Удалить</a>
 
-{{task.title}}
+<p>{{task.title}}</p>
 {{task.description}}
 {{task.deadline}}
 

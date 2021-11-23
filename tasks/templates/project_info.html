@@ -2,11 +2,20 @@
 
 {% block content %}
 
-<h4>{{project.title}}</h4>
-<p>{{project.description}}</p>
-<p>{{project.tasksCount}}</p>
-<p>{{project.deadline}}</p>
 
-<a href="{% url 'tasks:project_tasks' project.pk %}" class="btn btn-primary">Задачи</a>
 
+
+<div class="col-md-4">
+    <div class="card mb-2">
+
+
+        <h4>{{project.title}}</h4>
+        Описание проекта: <p>{{project.description}}</p>
+        Количество задач: <p>{{project.tasksCount}}</p>
+        <p>Дедлайн: {{project.deadline}}</p>
+
+        <a href="{% url 'tasks:project_tasks' project.pk %}" class="btn btn-primary">Задачи</a>
+        <a href="{% url 'tasks:delete_project' project.pk %}" class="btn btn btn-danger">Удалить</a>
+    </div>
+</div>
 {% endblock %}
