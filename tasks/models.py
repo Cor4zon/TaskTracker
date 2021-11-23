@@ -3,7 +3,7 @@ import datetime
 from django.db import models
 from users.models import Employee
 
-# Create your models here.
+
 class Project(models.Model):
     title = models.CharField(max_length=30)
     description = models.TextField()
@@ -23,7 +23,7 @@ class Task(models.Model):
 
 
 class Comment(models.Model):
-    title = models.CharField(max_length=50)
-    description = models.TextField()
-    employee = models.ForeignKey(Employee, on_delete = models.CASCADE)
-    task = models.ManyToManyField(Task)
+    author = models.CharField(max_length=60)
+    body = models.TextField()
+    created_on = models.DateTimeField(auto_now_add=True)
+    task = models.ForeignKey('Task', on_delete=models.CASCADE)

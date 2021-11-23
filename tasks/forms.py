@@ -1,5 +1,6 @@
 from django import forms
 
+
 class ProjectForm(forms.Form):
     title = forms.CharField(label="Название:")
     description = forms.CharField(label="Описание:", widget=forms.Textarea)
@@ -14,3 +15,17 @@ class TaskForm(forms.Form):
     employee = forms.IntegerField(label="Сотрудник:", initial=1)
 
 
+class CommentForm(forms.Form):
+    author = forms.CharField(
+        max_length=60,
+        widget=forms.TextInput(attrs={
+            "class": "form-control",
+            "placeholder": "Your Name"
+        })
+    )
+    body = forms.CharField(widget=forms.Textarea(
+        attrs={
+            "class": "form-control",
+            "placeholder": "Leave a comment!"
+        })
+    )

@@ -1,6 +1,6 @@
 from django.shortcuts import render, HttpResponse
 from tasks.models import Project, Task, Comment
-from tasks.forms import ProjectForm, TaskForm
+from tasks.forms import ProjectForm, TaskForm, CommentForm
 from django.contrib.auth.decorators import login_required, user_passes_test
 
 
@@ -8,31 +8,44 @@ from django.contrib.auth.decorators import login_required, user_passes_test
 def index(request):
     return render(request, "tasks.html")
 
+
 @login_required
 def all_projects(request):
     projects = Project.objects.all()
     return render(request, "all_projects.html", context={"projects": projects})
+
 
 @login_required
 def project_info(request, pk):
     project = Project.objects.get(pk=pk)
     return render(request, "project_info.html", context={"project": project})
 
+
 @login_required
 def project_tasks(request, pk):
     tasks = Task.objects.filter(project_id=pk)
     return render(request, "project_tasks.html", context={"tasks": tasks})
 
+
 @login_required
 def task_info(request, pk):
     task = Task.objects.get(pk=pk)
+    form = CommentForm()
+    if request.method == 'POST':
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = Comment(
+                author=form.cleaned_data["author"],
+                body=form.cleaned_data["body"],
+                task=task
+            )
 
-    try:
-        comments = Comment.objects.get(task=pk)
-    except:
-        comments = ""
+            comment.save()
 
-    return render(request, "task_info.html", context={"task": task, "comments": comments})
+    comments = Comment.objects.filter(task=task)
+
+    return render(request, "task_info.html", context={"task": task, "form": form, "comments": comments})
+
 
 @user_passes_test(lambda user: user.is_staff)
 def create_project(request):
