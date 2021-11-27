@@ -16,6 +16,7 @@
     <div class="form-group">
         {{ form.author }}
     </div>
+    <p></p>
     <div class="form-group">
         {{ form.body }}
     </div>
@@ -31,6 +32,8 @@
         <b>{{ comment.author }}</b> wrote:
     </p>
     <p>{{ comment.body }}</p>
+    <a href="{% url 'tasks:delete_comment' comment.pk %}" class="btn btn btn-danger">x</a>
+
     <hr>
 {% endfor %}
 

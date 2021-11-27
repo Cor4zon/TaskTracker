@@ -91,7 +91,32 @@ DATABASES = {
         'PASSWORD': 'mypass',
         'HOST': 'localhost',
         'PORT': '5433',
-    }
+    },
+    'boss': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mydb',
+        'USER': 'boss',
+        'PASSWORD': '123',
+        'HOST': 'localhost',
+        'PORT': '5433',
+    },
+    'staff': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mydb',
+        'USER': 'staff',
+        'PASSWORD': '12',
+        'HOST': 'localhost',
+        'PORT': '5433',
+    },
+    'admin': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'mydb',
+        'USER': 'admin',
+        'PASSWORD': '1',
+        'HOST': 'localhost',
+        'PORT': '5433',
+    },
+
 }
 
 
