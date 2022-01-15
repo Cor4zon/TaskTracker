@@ -24,4 +24,7 @@ urlpatterns = [
     url(r'^tasks/', include("tasks.urls")),
     url(r'^users/', include("users.urls")),
     path('admin/', admin.site.urls),
+
+    # api/v2
+    url(r"api/v2/", include("tasks.urls")),
 ]

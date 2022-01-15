@@ -10,6 +10,9 @@ class Project(models.Model):
     tasksCount = models.IntegerField(default=0)
     deadline = models.DateField(default=None)
 
+    def __str__(self):
+        return str(self.title)
+
 
 class Task(models.Model):
     title = models.CharField(max_length=30)
@@ -20,6 +23,9 @@ class Task(models.Model):
     # указывает на задачу предка
     subtask = models.IntegerField(blank=True, default=0)
     employee = models.ManyToManyField(Employee)
+
+    def __str__(self):
+        return f"{self.pk}: {self.title}"
 
 
 class Comment(models.Model):
