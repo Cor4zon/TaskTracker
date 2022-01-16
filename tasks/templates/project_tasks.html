@@ -1,0 +1,28 @@
+{% extends 'tasks.html' %}
+
+
+{% block content %}
+<h4>Список задач</h4>
+<a href="#" class="btn btn-success">+</a>
+
+
+<div class="row">
+{% for task in tasks %}
+<div class="col-md-4">
+    <div class="card mb-2">
+        <h5>{{task.title}}</h5>
+        Описание задачи:<p>{{task.description}}</p>
+        Приоритет задачи: {{task.status}}
+        <p>Deadline: {{task.deadline}}</p>
+
+        <a href="{% url 'tasks:task_info' task.id %}" class="btn btn-primary">Подробнее</a>
+
+
+    </div>
+</div>
+{% endfor %}
+</div>
+
+{% endblock %}
+
+

@@ -3,6 +3,9 @@ from django.urls import path, re_path, include
 from django.conf.urls import url
 from tasks import views
 
+from rest_framework.routers import DefaultRouter
+
+
 app_name = "tasks"
 
 urlpatterns = [
