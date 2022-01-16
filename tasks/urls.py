@@ -3,9 +3,7 @@ from django.urls import path, re_path, include
 from django.conf.urls import url
 from tasks import views
 
-from rest_framework.routers import DefaultRouter
 
-# branch testing
 app_name = "tasks"
 
 urlpatterns = [
@@ -18,6 +16,4 @@ urlpatterns = [
     path('project_info/<int:pk>/delete_project', views.delete_project, name="delete_project"),
     path('project_info/<int:pk>/delete_task', views.delete_task, name="delete_task"),
     path('task_info/delete_comment/<int:pk>', views.delete_comment, name="delete_comment"),
-
-
 ]

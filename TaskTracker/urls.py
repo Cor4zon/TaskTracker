@@ -27,4 +27,6 @@ urlpatterns = [
 
     # api/v2
     # url(r"api/v2/", include("tasks.urls")),
+    path("", include("tasks_api.urls")),
+
 ]
