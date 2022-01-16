@@ -10,6 +10,10 @@ class ProjectSerializer(serializers.ModelSerializer):
 
 
 class TaskSerializer(serializers.ModelSerializer):
+    parent_lookup_kwargs = {
+        'project_pk': 'project__pk',
+    }
+
     class Meta:
         model = Task
         fields = '__all__'
