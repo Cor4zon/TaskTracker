@@ -1,15 +1,11 @@
-from django.shortcuts import render, HttpResponse
-from tasks.models import Project, Task, Comment
-from tasks.forms import ProjectForm, TaskForm, CommentForm
+from django.shortcuts import render
+from tasks.models import Task, Comment
+from tasks.forms import ProjectForm, CommentForm
 from django.shortcuts import redirect
-from django.contrib.auth.decorators import login_required, user_passes_test
+from django.contrib.auth.decorators import login_required
 import redis
 
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-
 from .models import Project
-from .serializers import ProjectSerializer
 
 r = redis.Redis()
 
