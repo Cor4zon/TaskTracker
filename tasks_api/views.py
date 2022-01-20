@@ -6,61 +6,56 @@ from django.http import JsonResponse
 from rest_framework.response import Response
 from rest_framework import viewsets
 
+from .repository_pattern import ProjectService, TaskService
+
 
 class ProjectViewSet(viewsets.ViewSet):
     serializer_class = ProjectSerializer
 
     def list(self, request):
-        queryset = Project.objects.filter()
-        serializer = ProjectSerializer(queryset, many=True)
+        projects = ProjectService.read_all()
+        serializer = ProjectSerializer(projects, many=True)
         return Response(serializer.data)
 
     def retrieve(self, request, pk=None):
-        queryset = Project.objects.filter()
-        project = get_object_or_404(queryset, pk=pk)
-        serializer = ProjectSerializer(project)
+        project = ProjectService.read(pk)
+        serializer = ProjectSerializer(project, many=True)
         return Response(serializer.data)
 
     def create(self, request):
-        title = request.POST.get("title")
-        description = request.POST.get("description")
-        deadline = request.POST.get("deadline")
-        new_project = Project(title=title, description=description, tasksCount=0, deadline=deadline)
-        new_project.save()
+        new_project = request.data
+        ProjectService.create(new_project)
         serializer = ProjectSerializer(new_project)
         return Response(serializer.data)
 
     def destroy(self, request, pk=None):
-        Project.objects.filter(pk=pk).delete()
+        ProjectService.delete(pk)
         return JsonResponse({'status': 'OK', 'message': 'You deleted project'}, status=200)
+
+    def partial_update(self, request, pk):
+        ProjectService.update(pk, request.data)
+        return JsonResponse({'status': 'OK', 'message': 'You update project'}, status=200)
 
 
 class TaskViewSet(viewsets.ViewSet):
     serializer_class = TaskSerializer
 
-    def list(self, request, project_pk=None):
-        queryset = Task.objects.filter(project_id=project_pk)
-        serializer = TaskSerializer(queryset, many=True)
+    def list(self, request, project_pk=None, pk=None):
+        tasks = TaskService.read_filtered({"project": project_pk})
+        serializer = TaskSerializer(tasks, many=True)
         return Response(serializer.data)
 
-    def retrieve(self, request, pk=None, project_pk=None):
-        queryset = Task.objects.filter(pk=pk, project_id=project_pk)
-        task = get_object_or_404(queryset, pk=pk)
+    def retrieve(self, request, project_pk=None, pk=None):
+        task = TaskService.read(pk)
         serializer = TaskSerializer(task)
         return Response(serializer.data)
 
     def create(self, request, project_pk=None):
-        title = request.POST.get("title")
-        description = request.POST.get("description")
-        status = request.POST.get("status")
-        deadline = request.POST.get("deadline")
-        new_task = Task(title=title, description=description, deadline=deadline, project_id=project_pk)
-        new_task.save()
+        new_task = request.data
+        TaskService.create(new_task)
+        return Response(new_task)
 
-        serializer = TaskSerializer(new_task)
-        return Response(serializer.data)
-
-    def destroy(self, request, pk=None, project_pk=None):
-        Task.objects.filter(pk=pk).delete()
+    def destroy(self, request, project_pk=None, pk=None):
+        TaskService.delete(pk)
         return JsonResponse({'status': 'OK', 'message': 'You deleted task'}, status=200)
 
