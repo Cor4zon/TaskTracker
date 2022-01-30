@@ -1,13 +1,12 @@
 # users/urls.py
 
-from django.urls import path, re_path, include
-from django.conf.urls import url
+from django.urls import re_path, include, path
 from users import views
 
 app_name = "users"
 
 urlpatterns = [
-    url(r"^accounts/", include("django.contrib.auth.urls")),
-    url(r"all_employees", views.all_employees, name="all_employees"),
+    re_path(r"^accounts/", include("django.contrib.auth.urls")),
+    re_path(r"all_employees", views.all_employees, name="all_employees"),
     path("personal_data/<int:pk>", views.personal_data, name="personal_data"),
 ]

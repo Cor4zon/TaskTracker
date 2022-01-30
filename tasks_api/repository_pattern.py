@@ -1,5 +1,4 @@
 import abc
-import transaction as transaction
 from tasks.models import Project, Task
 
 

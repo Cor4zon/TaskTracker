@@ -15,14 +15,13 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from django.conf.urls import url
 from users import views
 
 
 urlpatterns = [
-    url(r"^$", views.index, name="home"),
-    url(r'^tasks/', include("tasks.urls")),
-    url(r'^users/', include("users.urls")),
+    path("", views.index, name="home"),
+    path('tasks/', include("tasks.urls")),
+    path('users/', include("users.urls")),
     path('admin/', admin.site.urls),
 
     # api/v2
