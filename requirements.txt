@@ -8,6 +8,7 @@ charset-normalizer==2.0.10
 coverage==6.3
 curtsies==0.3.10
 cwcwidth==0.1.6
+Deprecated==1.2.13
 distlib==0.3.4
 Django==4.0.1
 djangorestframework==3.13.1
@@ -27,6 +28,7 @@ pipenv==2022.1.8
 platformdirs==2.4.1
 pluggy==1.0.0
 promise==2.3
+psycopg2==2.9.3
 py==1.11.0
 pyasn1==0.4.8
 pycodestyle==2.8.0
@@ -38,6 +40,7 @@ pytest==6.2.5
 pytest-cov==3.0.0
 pytz==2021.3
 pyxdg==0.27
+redis==4.1.2
 requests==2.27.1
 rsa==4.8
 Rx==1.6.1
@@ -51,3 +54,4 @@ typing_extensions==4.0.1
 urllib3==1.26.8
 virtualenv==20.13.0
 virtualenv-clone==0.5.7
+wrapt==1.13.3
