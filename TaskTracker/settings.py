@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     'tasks',
     # rest api
     'rest_framework',
+    'corsheaders',
     'tasks_api',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -54,6 +56,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
 
 ROOT_URLCONF = 'TaskTracker.urls'
@@ -170,3 +173,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # for auth
 LOGIN_REDIRECT_URL = '/tasks'
 LOGOUT_REDIRECT_URL = 'home'
+
+
+
+# White listing the localhost:3000 port
+# for React
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:3000',
+    'https://localhost:3000'
+)
