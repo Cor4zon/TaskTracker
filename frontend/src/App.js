@@ -1,43 +1,30 @@
-import React, { Component, useState } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "./components/Modal";
 import axios from 'axios';
 
-class App extends Component {
+const App = () => {
 
-	constructor(props) {
-		super(props);
+	const [activeItem, setActiveItem] = useState({title: "", description: "", deadline: ""});
+	const [projectList, setProjectList] = useState([]);
+	const [modal, setModal] = useState(null);
 
-		this.state = {
-
-		activeItem: {
-			title: "",
-			description: "",
-			deadline: "",
-		},
-
-		projectList: [],
-		};
-	}
-
-	// const [projectList, setProjectList] = useState([])
-
-	// Lifecycle method
-	componentDidMount() {
-		this.refreshList();
-	}
+	useEffect(() => {
+		refreshList();
+	})
 
 
-	refreshList = () => {
+	const refreshList = () => {
 		const apiUrl = "http://localhost:8000/api/v1/projects/";
 		axios.get(apiUrl).then(res => {
-				this.setState({ projectList: res.data });
+				// this.setState({ projectList: res.data });
+				setProjectList(res.data);
 				console.log(res.data);
 			}).catch(err => console.log(err));
 	};
 
 
-	renderProjectList = () => {
-		const projectItems = this.state.projectList;
+	const renderProjectList = () => {
+		const projectItems = projectList;
 
 		return (
 			projectItems.map((item) => (
@@ -47,12 +34,12 @@ class App extends Component {
 					{ item.deadline }
 
 					<button
-						onClick={() => this.editItem(item)}
+						onClick={() => editItem(item)}
 						className="btn btn-secondary mr-2"
 					> Edit </button>
 
 					<button
-						onClick={() => this.handleDelete(item)}
+						onClick={() => handleDelete(item)}
 						className="btn btn-danger">
 					Delete </button>
 				</li>
@@ -60,24 +47,24 @@ class App extends Component {
 		)
 	}
 
-	toggle = () => {
+	const toggle = () => {
 		//add this after modal creation
-		this.setState({ modal: !this.state.modal });
+		setModal(!modal);
 	};
 
-	handleSubmit = (item) => {
-		this.toggle();
-		alert("save" + JSON.stringify(item));
-	};
+	// handleSubmit = (item) => {
+	// 	this.toggle();
+	// 	alert("save" + JSON.stringify(item));
+	// };
 
 	// Submit an item
-	handleSubmit = (item) => {
-		this.toggle();
+	const handleSubmit = (item) => {
+		toggle();
 
 		if (item.id) {
-		// if old post to edit and submit
-		axios.put(`http://localhost:8000/api/v1/projects/${item.id}/`, item).then((res) => this.refreshList());
-		return;
+			// if old post to edit and submit
+			axios.put(`http://localhost:8000/api/v1/projects/${item.id}/`, item).then((res) => refreshList());
+			return;
 		}
 		// if new post to submit
 		axios
@@ -85,26 +72,27 @@ class App extends Component {
 		.then((res) => this.refreshList());
 	};
 
-	handleDelete = (item) => {
-		axios.delete(`http://localhost:8000/api/v1/projects/${item.id}/`).then((res) => this.refreshList());
+	const handleDelete = (item) => {
+		axios.delete(`http://localhost:8000/api/v1/projects/${item.id}/`).then((res) => refreshList());
 		alert("delete" + JSON.stringify(item));
 	};
 
 
 	// Create item
-	createItem = () => {
+	const createItem = () => {
 		const item = { title: "", description: "" };
-		this.setState({ activeItem: item, modal: !this.state.modal });
+		setActiveItem(item);
+		setModal(!modal);
 	};
 
 	//Edit item
-	editItem = (item) => {
-		this.setState({ activeItem: item, modal: !this.state.modal });
+	const editItem = (item) => {
+		setActiveItem(item);
+		setModal(!modal);
 	};
 
 
-	render() {
-		return (
+	return (
 		<main className="content">
 			<h1 className="text-success text-uppercase text-center my-4">
 			 Task Tracker
@@ -113,29 +101,29 @@ class App extends Component {
 			<div className="col-md-6 col-sm-10 mx-auto p-0">
 				<div className="card p-3">
 					<div className="">
-						<button onClick={this.createItem} className="btn btn-info">
+						<button onClick={createItem} className="btn btn-info">
 						Add task
 						</button>
 					</div>
 
 					{/*{this.renderTabList()}*/}
 					<ul className="list-group list-group-flush">
-						{this.renderProjectList()}
+						{renderProjectList()}
 					</ul>
 				</div>
 			</div>
 			</div>
 
-			{this.state.modal ? (
+			{modal ? (
 			<Modal
-				activeItem={this.state.activeItem}
-				toggle={this.toggle}
-				onSave={this.handleSubmit}
+				activeItem={activeItem}
+				toggle={toggle}
+				onSave={handleSubmit}
 			/>
 			) : null}
 		</main>
-		);
-	}
+	);
 }
+
 
 export default App;
