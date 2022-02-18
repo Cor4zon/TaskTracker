@@ -1,0 +1,28 @@
+
+.projectList-items {
+    list-style: none;
+}
+
+button {
+    background: springgreen;
+    margin: 15px;
+    padding: 16px;
+    width: 20%;
+    border-radius: 8px;
+    border: solid black 3px;
+}
+
+button:hover,
+button:active {
+
+    background: gainsboro;
+    color: black;
+    border: solid red 3px;
+
+}
+
+button.btn-add {
+    margin-left: 16px;
+    width: 10%;
+    box-sizing: border-box;
+}
