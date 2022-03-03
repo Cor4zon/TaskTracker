@@ -1,0 +1,52 @@
+
+.project-item {
+    background: greenyellow;
+    border: solid black 5px;
+    padding: 8px;
+    margin: 16px;
+    width: 50%;
+    height: 100%;
+    font-family: 'Lato', sans-serif;
+/*font-family: 'Montserrat', sans-serif;*/
+
+    box-sizing: border-box;
+    display: inline-block;
+}
+
+.project-item__title {
+    margin: 25px;
+    padding: 8px;
+    background: yellow;
+    border: solid black 3px;
+    width: 20%;
+    height: 20%;
+}
+
+.project-item__description {
+    margin: 8px;
+}
+
+button {
+    margin: 15px;
+    padding: 16px;
+    width: 20%;
+    border-radius: 8px;
+    border: solid black 3px;
+}
+
+button:hover,
+button:active {
+
+    background: gainsboro;
+    color: black;
+    border: solid red 3px;
+
+}
+.btn-edit {
+    background: grey;
+
+}
+
+.btn-delete {
+    background: red;
+}
