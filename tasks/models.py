@@ -1,14 +1,14 @@
 import datetime
 
 from django.db import models
+from django.utils.timezone import timezone
 from users.models import Employee
 
 
 class Project(models.Model):
     title = models.CharField(max_length=30)
     description = models.TextField()
-    tasksCount = models.IntegerField(default=0)
-    deadline = models.DateField(default=None)
+    deadline = models.DateField(null=True, blank=True)
 
     def __str__(self):
         return str(self.title)

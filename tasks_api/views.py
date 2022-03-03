@@ -36,6 +36,10 @@ class ProjectViewSet(viewsets.ViewSet):
         ProjectService.update(pk, request.data)
         return JsonResponse({'status': 'OK', 'message': 'You update project'}, status=200)
 
+    def update(self, request, pk):
+        ProjectService.update(pk, request.data)
+        return JsonResponse({'status': 'OK', 'message': 'You update project'}, status=200)
+
 
 class TaskViewSet(viewsets.ViewSet):
     serializer_class = TaskSerializer

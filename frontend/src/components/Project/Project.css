@@ -4,7 +4,8 @@
     border: solid black 5px;
     padding: 8px;
     margin: 16px;
-    width: 40%;
+    width: 50%;
+    height: 100%;
     font-family: 'Lato', sans-serif;
 /*font-family: 'Montserrat', sans-serif;*/
 
@@ -17,7 +18,8 @@
     padding: 8px;
     background: yellow;
     border: solid black 3px;
-    width: 25%;
+    width: 20%;
+    height: 20%;
 }
 
 .project-item__description {

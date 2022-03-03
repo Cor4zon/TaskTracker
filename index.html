@@ -1,32 +1,22 @@
 <!DOCTYPE html>
-<html>
+<html lang="">
+
 <head>
-<title>Изучаем Vue.js</title>
-<meta charset="utf-8" />
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0" />
+
+    <title>Task tracker</title>
 </head>
+
 <body>
-<div id="app">
-    <button v-on:click="increase">+</button>
-    <button v-on:click="decrease">-</button>
-    <div>{{counter}}</div>
-</div>
-<script src="https://unpkg.com/vue"></script>
-<script>
-    var app = new Vue({
-        el: '#app',
-        data: {counter:0},
-        methods: {
-            increase: function(event){
-                console.log(event);
-                this.counter++;
-            },
-            decrease: function(event){
-                this.counter--;
-            }
-        }
-    });
-</script>
+    <noscript>
+        <strong>Unreachable resource. Sorry.</strong>
+    </noscript>
+    <div id="app">Привет! Пример работы с nginx</div>
+    <img src = "users/static/users/img/logo.png" alt ="Cat">
+    <!-- <link rel="icon" href="<%= BASE_URL %>img.jpg" /> -->
+    <!-- built files will be auto injected -->
 </body>
+
 </html>
-
-

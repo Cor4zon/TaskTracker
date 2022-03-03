@@ -1,12 +1,11 @@
 import axios from "axios";
-
-
 import React, { useState, useEffect } from 'react';
 import ProjectList from "./components/ProjectList/ProjectList";
 
 
 const App = () => {
     let [ projectList, setProjectList ] = useState([]);
+    let [ projectListVisible, setProjectListVisible ] = useState(true);
 
     useEffect(() => {
         axios.get('http://localhost:8000/api/v1/projects/').then((response) => {
@@ -30,7 +29,7 @@ const App = () => {
 
     const DeleteProject = (id) => {
             axios.delete(`http://localhost:8000/api/v1/projects/${id}/`).then((response) => {
-                setProjectList(projectList.filter(project => project.id != id));
+                setProjectList(projectList.filter(project => project.id !== id));
             });
             alert(`you delete ${id} project.`);
     }
@@ -39,15 +38,19 @@ const App = () => {
         return ;
     }
 
-    return (
+    if (projectListVisible) {
+          return (
         <main>
             <ProjectList
                 projectList={projectList}
                 createProject={createProject}
                 DeleteProject={DeleteProject}
+                setProjectListVisible={setProjectListVisible}
             />
         </main>
     )
+    }
+
 }
 
 export default App;

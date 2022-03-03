@@ -6,7 +6,7 @@ import ProjectForm from '../Project/ProjectForm'
 import './ProjectList.css';
 
 
-const ProjectList = ( { projectList, createProject, DeleteProject }) => {
+const ProjectList = ( { projectList, createProject, DeleteProject, setProjectListVisible }) => {
 
     const [projectFormVisible, setProjectFormVisible] = useState(false);
 
@@ -23,17 +23,18 @@ const ProjectList = ( { projectList, createProject, DeleteProject }) => {
                 setProjectFormVisible(true);
             }}>New</button>
 
-            <ul className="projectList-items">
-                {
-                    projectList.map((project, id) => {
-                        return (
-                            <li key={id}>
-                                <Project project={ project } DeleteProject={DeleteProject}/>
-                            </li>
-                        )
-                    })
-                }
-            </ul>
+
+                <ul className="projectList-items">
+                    {
+                        projectList.map((project, id) => {
+                            return (
+                                    <li key={id}>
+                                            <Project project={ project } DeleteProject={DeleteProject}/>
+                                    </li>
+                            )
+                        })
+                    }
+                </ul>
         </div>
     )
 }
