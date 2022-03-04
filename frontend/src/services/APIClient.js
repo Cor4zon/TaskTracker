@@ -20,7 +20,7 @@ class APIClient {
         )
     }
 
-    addProject(title, description) {
+    addProject(title, description, deadline) {
         const wrapper = new AxiosWrapper('http://localhost:8000/api/v1/projects/');
         if (title.length > 0 && description.length > 0) {
             return Promise.resolve(
@@ -28,6 +28,7 @@ class APIClient {
                     {
                         title: title,
                         description: description,
+                        deadline: deadline,
                     }
                 ).catch((error) => console.error(error.response) )
             )
