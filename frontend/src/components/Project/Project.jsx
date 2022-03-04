@@ -1,7 +1,8 @@
-
 import './Project.css';
+import APIClient from "../../services/APIClient";
 
-const Project = ( { project, DeleteProject }) => {
+const Project = ( { project }) => {
+    const client = new APIClient();
 
     return (
         <div className="project-item">
@@ -14,7 +15,8 @@ const Project = ( { project, DeleteProject }) => {
              }} >Edit</button>
 
             <button className="btn-delete" onClick={() => {
-                DeleteProject(project.id);
+                console.log("delete project");
+                client.deleteProject(project.id)
             }}>Delete</button>
         </div>
     );
