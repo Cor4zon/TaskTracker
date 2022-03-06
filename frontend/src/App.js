@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState, useEffect } from 'react';
 import ProjectList from "./components/ProjectList/ProjectList";
 import APIClient from "./services/APIClient";
@@ -14,7 +13,7 @@ const App = () => {
     }, [client]);
 
     return (
-        <main>
+        <main className="app">
             <ProjectList projectList={projectList} />
         </main>
     )

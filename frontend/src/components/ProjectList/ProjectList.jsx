@@ -1,14 +1,13 @@
-
 import {useEffect, useState} from "react";
 import Project from "../Project/Project";
 import ProjectForm from '../Project/ProjectForm'
-
+import ProjectUpdateForm from "../Project/ProjectUpdateForm";
 import './ProjectList.css';
-
 
 const ProjectList = ( { projectList }) => {
 
     const [projectFormVisible, setProjectFormVisible] = useState(false);
+    const [projectUpdateFormVisible, setProjectUpdateFormVisible] = useState(0);
 
     if (projectFormVisible) {
         return (
@@ -16,11 +15,16 @@ const ProjectList = ( { projectList }) => {
                 <ProjectForm />
             </div>
         )
+    } else if (projectUpdateFormVisible) {
+        return (
+            <div>
+                <ProjectUpdateForm project={projectUpdateFormVisible}/>
+            </div>
+        )
     } else {
         return (
             <div>
                 <button className="btn-create" onClick={() => {
-                    console.log("create project");
                     setProjectFormVisible(true);
                 }}>Add</button>
 
@@ -29,7 +33,7 @@ const ProjectList = ( { projectList }) => {
                             projectList.map((project, id) => {
                                 return (
                                         <li key={id}>
-                                                <Project project={ project } />
+                                                <Project project={ project } setProjectUpdateFormVisible={setProjectUpdateFormVisible} />
                                         </li>
                                 )
                             })

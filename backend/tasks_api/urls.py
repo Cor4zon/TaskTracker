@@ -20,8 +20,6 @@ project_router.register(r'tasks', TaskViewSet, basename='tasks')
 # /projects/{project_pk}/tasks/
 # /projects/{project_pk}/tasks/{task_pk}/
 
-
-
 urlpatterns = [
     path(r'', include(router.urls)),
     path(r'', include(project_router.urls)),

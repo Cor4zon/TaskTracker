@@ -46,6 +46,43 @@ class APIClient {
             })
         )
     }
+
+    fetchTasks(projectId) {
+        const wrapper = new AxiosWrapper('http://localhost:8000/api/v1/projects/' + projectId + '/tasks');
+        return Promise.resolve(
+            wrapper.get()
+                .catch((error) => {
+                    this.storage.clear();
+                    console.error(error);
+                    return Promise.reject(error);
+            })
+        )
+    }
+
+    deleteTask(projectId, taskId) {
+        const wrapper = new AxiosWrapper('http://localhost:8000/api/v1/projects/' + projectId + '/tasks/' + taskId);
+        return Promise.resolve(
+            wrapper.delete().catch((error) => {
+                console.error(error);
+                return Promise.reject(error);
+            })
+        )
+    }
+
+    updateProject(projectId, title) {
+        const wrapper = new AxiosWrapper('http://localhost:8000/api/v1/projects/' + projectId + '/');
+        if (title.length > 0) {
+            return Promise.resolve(
+                wrapper.patch(
+                    {
+                        title: title,
+                    }
+                ).catch((error) => console.error(error.response) )
+            )
+        } else {
+            return Promise.reject("Please, enter information");
+        }
+    }
 }
 
 export default APIClient;
